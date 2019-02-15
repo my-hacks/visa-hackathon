@@ -5,11 +5,13 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Image,
+  Button
 } from "react-native";
 import { Icon, Container, Content, Header, Left } from "native-base";
 
-class SettingsScreen extends Component {
+class Onboard extends Component {
   static navigationOptions = {
     title: "Lançamentos",
     headerStyle: {
@@ -60,6 +62,7 @@ class SettingsScreen extends Component {
   );
 
   render() {
+    const { navigation } = this.props;
     return (
       <Container>
         <Header>
@@ -70,22 +73,42 @@ class SettingsScreen extends Component {
             />
           </Left>
         </Header>
-        <View style={styles.titleBox}>
-          <Text style={styles.title}> Ultimos Lançamentos </Text>
-        </View>
-        <FlatList
-          contentContainerStyle={styles.list}
-          data={this.state.data}
-          keyExtractor={item => item.id}
-          renderItem={this.renderItem}
-        />
-        <Content />
+
+        <Content
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+            flex: 1,
+            flexDirection: "column",
+            marginTop: 30
+          }}
+        >
+          <View style={styles.welcome}>
+            <Text style={{ fontSize: 18, color: "#f35d26" }}>Bem vindo a</Text>
+            <Text>{` `}</Text>
+            <Image source={require("../../assets/data1.png")} />
+            <Text style={styles.textApresentation}>
+              A Merx quer ajudar o brasileiro a realizar o sonho de ser seu
+              próprio patrão, facilitando o seu acesso ao crédito e tornando o
+              Brasil em um pais de empreendedores
+            </Text>
+
+            <View style={styles.cmon}>
+              <Button
+                title="Quero o meu !!! "
+                onPress={() => navigation.navigate("Cadastro")}
+                color="#f35d26"
+                height="50"
+              />
+            </View>
+          </View>
+        </Content>
       </Container>
     );
   }
 }
 
-export default SettingsScreen;
+export default Onboard;
 
 const styles = StyleSheet.create({
   container: {
@@ -93,37 +116,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  list: {
-    padding: 20
-  },
-  productContainer: {
-    borderWidth: 2,
-    borderColor: "#ddd",
-    borderRadius: 5,
-    padding: 20,
-    marginBottom: 20,
-    backgroundColor: "#fff",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  left: {
+  welcome: {
+    flex: 1,
     flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
+    marginTop: 20
   },
-  titleBox: {
-    backgroundColor: "#f35d26",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-    marginTop: 15,
-    marginRight: 15,
-    marginLeft: 15
+  textApresentation: {
+    color: `#cecece`,
+    width: 300,
+    fontSize: 30,
+    marginTop: 30
   },
-  title: {
-    fontSize: 25,
-    color: "#FFF",
-    padding: 10
+  cmon: {
+    marginTop: 50
   }
 });

@@ -1,15 +1,11 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-  Dimensions
-} from "react-native";
-import { createDrawerNavigator, DrawerItems } from "react-navigation";
+import { StyleSheet } from "react-native";
+import { createDrawerNavigator } from "react-navigation";
 import HomeScreen from "./src/pages/HomeScreen";
 import SettingsScreen from "./src/pages/SettingsScreen";
+import Onboard from "./src/pages/Onboarding.";
+import Cadastro from "./src/pages/Cadastro";
+import Success from "./src/pages/Success";
 
 export default class App extends React.Component {
   render() {
@@ -18,7 +14,16 @@ export default class App extends React.Component {
 }
 
 const AppDrawerNavigator = createDrawerNavigator({
-  Home: {
+  Onboard: {
+    screen: Onboard
+  },
+  Cadastro: {
+    screen: Cadastro
+  },
+  Success: {
+    screen: Success
+  },
+  HomeScreen: {
     screen: HomeScreen
   },
   Settings: {
